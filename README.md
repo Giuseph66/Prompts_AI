@@ -1,51 +1,87 @@
-# Welcome to your Expo app 👋
+# Prompts_AI
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile construído com [Expo React Native](https://expo.dev) que demonstra como integrar diversos recursos de Inteligência Artificial em uma única experiência.
 
-## Get started
+O objetivo é oferecer um **assistente pessoal totalmente personalizável** que possa conversar por texto, voz ou imagem, manter histórico das interações, reconhecer rostos e permitir ajustes finos de configuração sem complicação.
 
-1. Install dependencies
+---
 
+## ✨ Funcionalidades principais
+
+- **Chat IA (ChatScreen)**
+  - Conversa em tempo-real usando a API **Google Gemini**.
+  - Suporte a mensagens de **texto**, **áudio** (gravação e reprodução) e **imagem** (captura ou galeria).
+  - Personalidades pré-configuradas (Alice, Dr. Silva, Chef Maria, etc.) e criação/edição de novos perfis de IA.
+  - Rolagem automática e indicador de carregamento durante a resposta.
+
+- **Histórico (HistoryScreen)**
+  - Lista de conversas anteriores com busca, exportação, exclusão individual ou limpeza total.
+  - Cada item exibe título, avatar/persona, quantidade de mensagens e último contato.
+
+- **Reconhecimento Facial (RecoFacial)**
+  - Usa a câmera para capturar imagens e envia para um servidor FastAPI em `/recognize`.
+  - Exibe em overlay os nomes identificados e permite alternar entre câmeras frontal/traseira.
+
+- **Configurações (SettingsScreen)**
+  - Permite definir **API Key**, nome do usuário, tema, notificações, criptografia, backups, etc.
+  - Persistência local através de **AsyncStorage**.
+  - Exportação das preferências e limpeza de todos os dados.
+
+- **Design responsivo** com suporte a modo escuro e haptics.
+
+---
+
+## 🗂️ Estrutura de pastas
+
+```
+app/              # Telas com roteamento baseado em arquivos (expo-router)
+  ├─ (tabs)/      # Navegação por abas (Chat)
+  ├─ history.tsx  # Histórico de conversas
+  ├─ reco_facial.tsx
+  └─ settings.tsx
+components/       # Componentes reutilizáveis (UI, animações, etc.)
+assets/           # Ícones, fontes e imagens estáticas
+constants/        # Cores e estilos globais
+```
+
+---
+
+## 🚀 Começando
+
+1. Instale as dependências:
    ```bash
    npm install
    ```
-
-2. Start the app
-
+2. Defina sua chave da API Gemini em `Settings` ou adicione uma variável de ambiente:
+   ```bash
+   export GEMINI_API_KEY="SUA_CHAVE_AQUI"
+   ```
+3. Inicie o projeto:
    ```bash
    npx expo start
    ```
+4. Escolha onde abrir:
+   - App dev-build
+   - Emulador Android / Simulador iOS
+   - Expo Go
 
-In the output, you'll find options to open the app in a
+> Para resetar o exemplo e começar do zero, execute `npm run reset-project`.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🔐 Requisitos
 
-## Get a fresh project
+- Node 18 +
+- Expo CLI
+- Dispositivo ou emulador com câmera (para reconhecimento facial)
+- Servidor FastAPI rodando em `http://192.168.0.25:8000` com endpoint `/recognize` (ajuste no arquivo `app/reco_facial.tsx` se necessário).
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 📄 Licença
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Distribuído sob a licença MIT. Veja `LICENSE` para mais detalhes.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# Prompts_AI
+Feito com ❤️ por **Jesús** e alimentado por IA.
